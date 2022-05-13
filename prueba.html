@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <!-- NAVIGATION-->
+    <nav class="container p-5 my-5 bg-dark text-white">
+        <div class="container">
+            <a href="#" class="navbar-brand">Argentin Bank</a> 
+        </div>
+    </nav>
+    <!--MAIN CONTENT-->
+    <div class="container p-5 my-5 bg-dark text-white">
+        <div class="row ">
+            <h3 >Simulador de Prestamo Personal</h3>
+            <div class="col-sm-3 pt-3 ">
+                <div class="card">
+                    <div class="card-body">
+                       <form id="formTask">
+                           <div class="form-group">
+                               <input type="text" id="monto" placeholder="Ingresar Monto a Solicitar" class="form-control">
+                           </div>
+                           <div class="form-group pt-3">
+                               <input id="cuotas"  rows="8" cols="80" class="form-control" placeholder="Cantidad de Cuotas: 1 a 360"></input>
+                           </div>
+                           <br>
+                           <br>
+                           
+                           <button type="submit" class="btn btn-pimary btn-block pt-2 bg-light">
+                                Calcular
+                           </button>
+                       </form> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pt-3">               
+                    <div class="alert alert-secondary" >                        
+                           <table class="table" id="tasas">
+                           </table>                                     
+                    </div>                          
+            </div>
+            <div class="col-sm-3 pt-3">
+                <div id="tasks" ></div>              
+            </div>
+        </div>
+    </div> 
+        <div class="container p-5 my-5 bg-dark text-white">
+            <footer>
+            <a href="#" class="navbar-brand">Argentin Bank</a> 
+            <p class="lead">Generamos Compromiso</p>
+        </footer>
+        </div> 
+    <!-- SCRIPTS-->
+    <script src="app.js" type="module"></script>
+    <script src="validaciones.js" defer></script> 
+</body>
+</html>
