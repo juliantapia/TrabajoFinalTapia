@@ -7,7 +7,6 @@ const getData = async () => {
         console.log("Hubo un Error", error);
     }
 }
-
 export {getData};
 
 

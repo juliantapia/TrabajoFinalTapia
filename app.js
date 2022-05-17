@@ -1,31 +1,54 @@
 import { getData } from "./getData.js";
+
 class Prestamo{
-    constructor(monto,cuotas){
+    constructor(monto,cuotas,interes,amort,montoCompuesto){
         this.monto = monto; 
-        this.cuotas = cuotas;       
+        this.cuotas = cuotas;
+        this.interes = interes;  
+        this.amort = amort;
+        this.montoCompuesto = montoCompuesto;        
+
     }
+  amortizacion() {   
+          let exponente = Math.pow((1 + this.interes),-(this.cuotas));  
+          let anualidad = this.monto * (  this.interes / (1 - exponente) ); 
+          return Math.round(anualidad);
+  }  
+  amortizacionCapital(){
+          let MC = this.monto * (1 + this.interes);
+          let result = MC - this.monto ;
+          return result;
+  }
 }
 document.getElementById('formTask').addEventListener('submit', savePrestamo);
 function savePrestamo(e){   
     let monto = document.getElementById('monto').value;
-    let cuotas = document.getElementById('cuotas').value;  
-    const task = new Prestamo(monto,cuotas);
+    let cuotas = document.getElementById('cuotas').value;
+    let interes = 0.03;
+    let amort = 0;
+    let montoCompuesto = 0;
+  //pasar primer variable.  
+    const pasarVariable = new Prestamo(monto,cuotas,interes,amort,montoCompuesto);
+    const resultado = pasarVariable.amortizacion();    
+    const MC = pasarVariable.amortizacionCapital();  
+    const task = new Prestamo(monto,cuotas,interes,resultado,MC);
+ 
     if(camposCorrectos(task)) {
         let tasks = localStorage.getItem('tasks');
-        tasks = tasks === null && [] ;
+        tasks = tasks === null && [] ;        
         if (tasks){          
-            tasks.push(task);        
+            tasks.push(task);              
             localStorage.setItem('tasks',JSON.stringify(tasks));
         }else{       
             tasks =  JSON.parse(localStorage.getItem('tasks'));       
-            tasks.push(task);       
+            tasks.push(task);
+                    
             localStorage.setItem('tasks',JSON.stringify(tasks))
         } 
       }       
     getTasks();
     e.preventDefault();
 }
-let monto = 0;
 const Tasas = async () =>{  
   const MostarTasas = await getData();
   MostarTasas.forEach(tasas => {
@@ -56,20 +79,18 @@ const Tasas = async () =>{
         `;
   })
 }
-
 function getTasks(){    
     let tasks = JSON.parse(localStorage.getItem('tasks'));
     let tasksView = document.getElementById('tasks');   
     tasksView.innerHTML = ''; 
     tasks.forEach(function(tasks){
-      let result = tasks.monto * tasks.cuotas;  
       let monto = tasks.monto; 
       tasksView.innerHTML += `<div class="mb-3 alert alert-success"  >
                <div>
-                       <p>Monto a Pagar:</p>
-                       <p>${result}</p>
-                       <p>En cantidad de cuotas:<p>
-                       <p>${tasks.cuotas}<p>
+                       <p>Monto a Pagar $: ${tasks.monto} </p>                 
+                       <p>En cantidad de años: ${tasks.cuotas} <p>                       
+                       <p>Total a pagar por mes $: ${tasks.amort} <p>                       
+                       <p>Interes $: ${tasks.montoCompuesto} <p>
                       </div>
        </div>`; 
        const botonBorrar = document.createElement("button");
