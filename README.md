@@ -1,4 +1,4 @@
-#Simulador de Prestamos
-##Lmortizacion metodo frances
-##Librerias
--[switt alert]
+# Simulador de Prestamos
+## Lmortizacion metodo frances
+## Librerias
+ - [switt alert]
