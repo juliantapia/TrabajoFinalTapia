@@ -1,4 +1,6 @@
 # Simulador de Prestamos
-## Lmortizacion metodo frances
+## Amortizacion metodo frances
 ## Librerias
  - [switt alert]
+
+#### Comentarios sobre el funcionamiento
