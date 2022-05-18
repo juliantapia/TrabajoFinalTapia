@@ -1,27 +1,6 @@
 import { getData } from "./getData.js";
+import { Prestamo } from "./clases.js";
 
-class Prestamo{
-    constructor(monto,cuotas,interes,amort,montoCompuesto){
-        this.monto = monto; 
-        this.cuotas = cuotas;
-        this.interes = interes;  
-        this.amort = amort;
-        this.montoCompuesto = montoCompuesto;        
-
-    }
-  amortizacion() {   
-          let exponente = Math.pow((1 + this.interes),-(this.cuotas));  
-          let anualidad = this.monto * (  this.interes / (1 - exponente) ); 
-          return Math.round(anualidad);
-  }  
-  amortizacionCapital(){
-          let MC = this.monto * (1 + this.interes);
-          let result = MC - this.monto ;
-          return result;
-  }
-  
-
-}
 document.getElementById('formTask').addEventListener('submit', savePrestamo);
 function savePrestamo(e){   
     let monto = document.getElementById('monto').value;
@@ -29,11 +8,13 @@ function savePrestamo(e){
     let interes = 0.03;
     let amort = 0;
     let montoCompuesto = 0;
-  //pasar primer variable.  
-    const pasarVariable = new Prestamo(monto,cuotas,interes,amort,montoCompuesto);
+    let amortMensual = 0;
+    const pasarVariable = new Prestamo(monto,cuotas,interes,amort,montoCompuesto,amortMensual);
     const resultado = pasarVariable.amortizacion();    
     const MC = pasarVariable.amortizacionCapital();  
-    const task = new Prestamo(monto,cuotas,interes,resultado,MC);
+    const AM = pasarVariable.amortizacionMensual(resultado,MC);
+    //console.log(AM)
+    const task = new Prestamo(monto,cuotas,interes,resultado,MC,AM);
  
     if(camposCorrectos(task)) {
         let tasks = localStorage.getItem('tasks');
