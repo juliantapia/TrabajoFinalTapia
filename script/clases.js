@@ -1,12 +1,13 @@
 
 class Prestamo{
-    constructor(monto,cuotas,interes,amort,montoCompuesto,amortMensual){
+    constructor(monto,cuotas,interes,amort,montoCompuesto,amortMensual,saldo){
         this.monto = monto; 
         this.cuotas = cuotas;
         this.interes = interes;  
         this.amort = amort;
         this.montoCompuesto = montoCompuesto;   
-        this.amortMensual = amortMensual;     
+        this.amortMensual = amortMensual;  
+        this.saldo = saldo;   
 
     }
   amortizacion() {   
@@ -23,7 +24,11 @@ class Prestamo{
        return PagoMensual - interesMensual;
   }
 
+  saldoCalculo(resultado,AM){  
+   return resultado - AM;    
+    }  
 
+    
 }
 
 export {Prestamo}
