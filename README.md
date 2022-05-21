@@ -10,7 +10,7 @@
 ##### Ingresar Cantidad de años en las que desea pagar mensualmente las cuotas
 ##### Presione Calcular
 
-## _Cotizaciones
+## _Tasas
 ##### En Porcentajes
 ##### Muestra el porcentaje de las tasas aplicadas en el calculo.
 
